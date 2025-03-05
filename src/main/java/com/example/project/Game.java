@@ -52,6 +52,43 @@ public class Game {
         }
     }
 
-    public static void play() {
+    public static void play(){ //simulate card playing
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        ArrayList<Card> communityCards = new ArrayList<>();
+        Deck deck = new Deck();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("-------- chu's gambling hut --------");
+        System.out.println(" ----- press any key to start ----- ");
+        input.nextLine();
+
+        playerOne.addCard(deck.drawCard());
+        playerTwo.addCard(deck.drawCard());
+        playerOne.addCard(deck.drawCard());
+        playerTwo.addCard(deck.drawCard());
+
+        System.out.print("player 1 hand : " + playerOne.getHand());    
+        System.out.println();
+        System.out.println("------------------------------------");
+        // community cards
+        System.out.println(" -- press any key to view community cards -- ");
+        input.nextLine();
+        for (int i = 0; i < 4; i++) {
+            if (i == 0) {
+                deck.drawCard(); // discard one
+            } else {
+                communityCards.add(deck.drawCard()); // draw three
+            }
+        }
+        System.out.println("Community Cards: " + communityCards);
+        // decide winner
+        System.out.println("Press enter to see winner!");
+        input.nextLine();
+        String winner = determineWinner(playerOne, playerTwo, playerOne.playHand(communityCards), playerTwo.playHand(communityCards), communityCards);
+        System.out.println("Player Two Hand: " + playerTwo.getHand());
+        System.out.println("You play " + playerOne.playHand(communityCards));
+        System.out.println("Player two plays " + playerTwo.playHand(communityCards));
+        System.out.println(winner);
     }
 }
