@@ -78,7 +78,7 @@ public class Game {
             input.nextLine();
             for (int i = 0; i < 4; i++) {
                 if (i == 0) {
-                    deck.drawCard(); // discard one
+                    deck.drawCard();
                 } else {
                     communityCards.add(deck.drawCard()); // draw three
                 }

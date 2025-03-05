@@ -48,7 +48,7 @@ public class Player {
         else if (twoPair()) { handRanking = "Two Pair"; }
         else if (aPair()) { handRanking = "A Pair"; }
         else if (highCard()) { handRanking = "High Card"; }
-        else { handRanking = "Nothing"; } // fallback case
+        else { handRanking = "Nothing"; }
         return handRanking;
     }
 
@@ -133,7 +133,7 @@ public class Player {
     public boolean twoPair() {
         ArrayList<Integer> rankFreq = findRankingFrequency();
         int pairs = 0;
-                //looks through the arrayList of frequencies of ranks and sees if 2 of them is 2 
+        //looks through the arrayList of frequencies of ranks and sees if 2 of them is 2 
         for (int count : rankFreq) {
             if (count == 2) pairs++;
         }
