@@ -52,43 +52,52 @@ public class Game {
         }
     }
 
-    public static void play(){ //simulate card playing
-        Player playerOne = new Player();
-        Player playerTwo = new Player();
-        ArrayList<Card> communityCards = new ArrayList<>();
-        Deck deck = new Deck();
+    public static void play() {
         Scanner input = new Scanner(System.in);
-
         System.out.println("-------- chu's gambling hut --------");
         System.out.println(" ----- press any key to start ----- ");
         input.nextLine();
-
-        playerOne.addCard(deck.drawCard());
-        playerTwo.addCard(deck.drawCard());
-        playerOne.addCard(deck.drawCard());
-        playerTwo.addCard(deck.drawCard());
-
-        System.out.print("player 1 hand : " + playerOne.getHand());    
-        System.out.println();
-        System.out.println("------------------------------------");
-        // community cards
-        System.out.println(" -- press any key to view community cards -- ");
-        input.nextLine();
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                deck.drawCard(); // discard one
-            } else {
-                communityCards.add(deck.drawCard()); // draw three
+    
+        boolean playAgain = true;
+        while (playAgain) {
+            Player playerOne = new Player();
+            Player playerTwo = new Player();
+            ArrayList<Card> communityCards = new ArrayList<>();
+            Deck deck = new Deck();
+    
+            playerOne.addCard(deck.drawCard());
+            playerOne.addCard(deck.drawCard());
+            playerTwo.addCard(deck.drawCard());
+            playerTwo.addCard(deck.drawCard());
+    
+            System.out.print("player 1 hand : " + playerOne.getHand());    
+            System.out.println();
+            System.out.println("-------------------------------------");
+    
+            System.out.println("press any key to view community cards");
+            input.nextLine();
+            for (int i = 0; i < 4; i++) {
+                if (i == 0) {
+                    deck.drawCard(); // discard one
+                } else {
+                    communityCards.add(deck.drawCard()); // draw three
+                }
+            }
+            System.out.println("Community Cards: " + communityCards);
+            System.out.println("-------------------------------------");
+            System.out.println("player 2 hand : " + playerTwo.getHand());    
+    
+            System.out.println("who wins??");
+            input.nextLine();
+            String winner = determineWinner(playerOne, playerTwo, playerOne.playHand(communityCards), playerTwo.playHand(communityCards), communityCards);
+    
+            System.out.println(winner + "\n");
+    
+            System.out.println("Play again? (yes/no)");
+            String response = input.nextLine().trim().toLowerCase();
+            if (!response.equals("yes")) {
+                playAgain = false;
             }
         }
-        System.out.println("Community Cards: " + communityCards);
-        // decide winner
-        System.out.println("Press enter to see winner!");
-        input.nextLine();
-        String winner = determineWinner(playerOne, playerTwo, playerOne.playHand(communityCards), playerTwo.playHand(communityCards), communityCards);
-        System.out.println("Player Two Hand: " + playerTwo.getHand());
-        System.out.println("You play " + playerOne.playHand(communityCards));
-        System.out.println("Player two plays " + playerTwo.playHand(communityCards));
-        System.out.println(winner);
     }
 }
