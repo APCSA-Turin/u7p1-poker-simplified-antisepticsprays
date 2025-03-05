@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    
-    // determines the winner based on hand rankings; calls tiebreaker if rankings are equal
+
     public static String determineWinner(Player p1, Player p2, String p1HandRanking, String p2HandRanking, ArrayList<Card> communityCards) {
         int p1Rank = Utility.getHandRanking(p1HandRanking);
         int p2Rank = Utility.getHandRanking(p2HandRanking);
