@@ -52,7 +52,6 @@ public class Player {
         return handRanking;
     }
 
-<<<<<<< HEAD
     // checks if player has a Royal Flush 
      public boolean royalFlush() {
         //checks using striaght metho and seeing if the biggest card is an Ace
@@ -61,9 +60,6 @@ public class Player {
         }
             return false;
     }     
-=======
-    public void sortAllCards(){} 
->>>>>>> upstream/main
 
     // checks if player has a Straight Flush
     public boolean straightFlush() {
