@@ -158,7 +158,12 @@ public class Player {
                 highest = card;
             }
         }
-        return hand.contains(highest);
+        for (Card card : hand) {
+            if (card.equals(highest)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     // sorts all cards in ascending order based on rank value
